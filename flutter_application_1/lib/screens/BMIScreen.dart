@@ -13,7 +13,9 @@ class _BMIScreenState extends State<BMIScreen> {
   bool isImperial = false;
   final double fontSize = 18;
   late List<bool> selectedToggle;
-  String? result;
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
+  String result = '';
   @override
   void initState() {
     selectedToggle = [isMetric, isImperial];
@@ -51,16 +53,48 @@ class _BMIScreenState extends State<BMIScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: TextField(),
+            child: TextField(
+              controller: weightController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  hintText: "Enter the weight",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)))),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: TextField(),
+            child: TextField(
+              controller: heightController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  hintText: "Enter the height",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)))),
+            ),
           ),
-          ElevatedButton(onPressed: () {}, child: Text("Calculate BMI"))
+          ElevatedButton(
+              onPressed: calculateBMI,
+              child:
+                  Text("Calculate BMI", style: TextStyle(fontSize: fontSize))),
+          Text(result, style: TextStyle(fontSize: fontSize))
         ],
       ),
     );
+  }
+
+  void calculateBMI() {
+    double weight = double.parse(weightController.text);
+    double height = double.parse(heightController.text);
+    double bmi;
+    if (isMetric) {
+      bmi = weight / (height * height);
+    } else {
+      bmi = weight * 703 / (height * height);
+    }
+    setState(() {
+      result = "BMI is" + bmi.toStringAsFixed(2);
+    });
   }
 
   void pressed(int index) {

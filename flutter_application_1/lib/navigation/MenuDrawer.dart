@@ -26,14 +26,14 @@ class MenuDrawer extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.grey),
         child: Text(
           "Hello user",
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 22),
         )));
     menuTitles.forEach((String element) {
       Widget screen = Container();
       menuItems.add(ListTile(
         title: Text(
           element,
-          style: TextStyle(fontSize: 11),
+          style: TextStyle(fontSize: 18),
         ),
         onTap: () {
           switch (element) {

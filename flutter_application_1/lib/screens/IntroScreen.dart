@@ -24,7 +24,7 @@ class IntroScreen extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               padding: EdgeInsets.all(18),
               child: Text("Fitness is all you need for better life",
-                  textAlign: TextAlign.center, style: TextStyle(fontSize: 11))),
+                  textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
         ),
       ),
     );
