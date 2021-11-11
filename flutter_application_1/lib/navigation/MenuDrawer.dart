@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:flutter_application_1/screens/BMIScreen.dart';
 import 'package:flutter_application_1/screens/IntroScreen.dart';
+import 'package:flutter_application_1/screens/WeatherScreen.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key}) : super(key: key);
@@ -42,6 +43,9 @@ class MenuDrawer extends StatelessWidget {
               break;
             case 'BMI Calculator':
               screen = BMIScreen();
+              break;
+            case 'Weather':
+              screen = WeatherScreen();
               break;
             default:
               break;

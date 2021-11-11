@@ -8,7 +8,9 @@ class BottomNavigation extends StatelessWidget {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.monitor_weight), label: "BMI")
+        BottomNavigationBarItem(icon: Icon(Icons.monitor_weight), label: "BMI"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.cloud_circle), label: "Weather"),
       ],
       onTap: (int index) {
         switch (index) {
@@ -17,6 +19,9 @@ class BottomNavigation extends StatelessWidget {
             break;
           case 1:
             Navigator.pushNamed(context, '/BMI');
+            break;
+          case 2:
+            Navigator.pushNamed(context, '/Weather');
             break;
           default:
         }
