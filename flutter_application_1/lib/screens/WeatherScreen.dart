@@ -26,7 +26,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               child: TextField(
                 controller: locationController,
                 decoration: InputDecoration(
-                    hintText: "Enter the city",
+                    hintText: "Enter the location",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
