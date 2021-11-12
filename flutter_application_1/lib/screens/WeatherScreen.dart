@@ -10,7 +10,7 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  String response = '';
+  WeatherData response = new WeatherData();
   final locationController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -26,13 +26,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
               child: TextField(
                 controller: locationController,
                 decoration: InputDecoration(
-                    hintText: "Enter the location",
+                    hintText: "Enter the city",
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: getData,
+                    ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
             ),
-            ElevatedButton(onPressed: getData, child: Text("Get Data")),
-            Text(response)
+            weatherRow("City :", response.name),
+            weatherRow("Description :", response.description),
+            weatherRow(
+                "Temperature :", response.temperature.toStringAsFixed(2)),
+            weatherRow("Humidity :", response.humidity.toStringAsFixed(2)),
+            weatherRow("Pressure :", response.pressure.toStringAsFixed(2)),
           ],
         ));
   }
@@ -41,5 +49,24 @@ class _WeatherScreenState extends State<WeatherScreen> {
     WeatherData weatherData = new WeatherData();
     response = await weatherData.getWeather(locationController.text);
     setState(() {});
+  }
+
+  Widget weatherRow(String label, String value) {
+    Widget row = Padding(
+      padding: EdgeInsets.all(16),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Text(label, style: TextStyle(fontSize: 18)),
+          ),
+          Expanded(
+            flex: 4,
+            child: Text(value, style: TextStyle(fontSize: 18)),
+          ),
+        ],
+      ),
+    );
+    return row;
   }
 }
