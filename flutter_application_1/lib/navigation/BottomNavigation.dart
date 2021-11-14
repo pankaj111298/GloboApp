@@ -8,7 +8,6 @@ class BottomNavigation extends StatelessWidget {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       iconSize: 25,
-      backgroundColor: Theme.of(context).colorScheme.secondary,
       items: [
         BottomNavigationBarItem(
           icon: Icon(

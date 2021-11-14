@@ -12,12 +12,17 @@ class _TrainingScreenState extends State<TrainingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Training Data"),
-        ),
-        bottomNavigationBar: BottomNavigation(),
-        body: Center(
-          child: FlutterLogo(),
-        ));
+      appBar: AppBar(
+        title: Text("Your Training Sessions"),
+      ),
+      bottomNavigationBar: BottomNavigation(),
+      body: Center(
+        child: FlutterLogo(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
+    );
   }
 }
