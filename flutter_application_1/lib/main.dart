@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/BMIScreen.dart';
 import 'package:flutter_application_1/screens/IntroScreen.dart';
+import 'package:flutter_application_1/screens/TrainingScreen.dart';
 import 'package:flutter_application_1/screens/WeatherScreen.dart';
 
 void main() {
@@ -17,7 +18,8 @@ class GloboApp extends StatelessWidget {
       routes: {
         '/': (context) => IntroScreen(),
         '/BMI': (context) => BMIScreen(),
-        '/Weather': (context) => WeatherScreen()
+        '/Weather': (context) => WeatherScreen(),
+        '/Training': (context) => TrainingScreen()
       },
       initialRoute: '/',
       // home: IntroScreen(),

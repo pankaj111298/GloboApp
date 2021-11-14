@@ -6,11 +6,21 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      iconSize: 25,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home,
+          ),
+          label: "Home",
+        ),
         BottomNavigationBarItem(icon: Icon(Icons.monitor_weight), label: "BMI"),
         BottomNavigationBarItem(
-            icon: Icon(Icons.cloud_circle), label: "Weather"),
+            icon: Icon(Icons.cloud_queue), label: "Weather"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.accessibility_new_sharp), label: "Training"),
       ],
       onTap: (int index) {
         switch (index) {
@@ -23,7 +33,11 @@ class BottomNavigation extends StatelessWidget {
           case 2:
             Navigator.pushNamed(context, '/Weather');
             break;
+          case 3:
+            Navigator.pushNamed(context, '/Training');
+            break;
           default:
+            break;
         }
       },
     );
