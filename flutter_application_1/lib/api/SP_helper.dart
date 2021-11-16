@@ -12,4 +12,15 @@ class SP_helper {
   Future writeSession(Session session) async {
     preferences.setString(session.id.toString(), json.encode(session.toJson()));
   }
+
+  List<Session> getSessions() {
+    List<Session> sessions = [];
+    Set<String> keys = preferences.getKeys();
+    keys.forEach((String key) {
+      Session session =
+          Session.fromJson(jsonDecode(preferences.getString(key) ?? ''));
+      sessions.add(session);
+    });
+    return sessions;
+  }
 }
