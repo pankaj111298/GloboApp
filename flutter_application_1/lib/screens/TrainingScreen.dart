@@ -18,7 +18,9 @@ class _TrainingScreenState extends State<TrainingScreen> {
 
   @override
   void initState() {
-    helper.init().then((value) => updateScreen());
+    helper.init().then((value) {
+      updateScreen();
+    });
     super.initState();
   }
 
@@ -54,10 +56,11 @@ class _TrainingScreenState extends State<TrainingScreen> {
 
   void updateScreen() {
     sessions = helper.getSessions();
+    setState(() {});
   }
 
-  Future showSessionDialog(BuildContext context) async {
-    showDialog(
+  Future<dynamic> showSessionDialog(BuildContext context) async {
+    return showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -93,7 +96,6 @@ class _TrainingScreenState extends State<TrainingScreen> {
   Future saveSession() async {
     DateTime now = DateTime.now();
     String today = '${now.year}-${now.month}-${now.day}';
-
     Session session = new Session();
     session.id = 1;
     session.date = today;
@@ -102,5 +104,6 @@ class _TrainingScreenState extends State<TrainingScreen> {
     helper.writeSession(session);
     description.text = '';
     duration.text = '';
+    Navigator.pop(context);
   }
 }

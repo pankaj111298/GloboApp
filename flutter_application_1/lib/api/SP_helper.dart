@@ -18,7 +18,7 @@ class SP_helper {
     Set<String> keys = preferences.getKeys();
     keys.forEach((String key) {
       Session session =
-          Session.fromJson(jsonDecode(preferences.getString(key) ?? ''));
+          Session.fromJson(json.decode(preferences.getString(key) ?? ''));
       sessions.add(session);
     });
     return sessions;

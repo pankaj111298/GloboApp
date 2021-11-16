@@ -5,17 +5,17 @@ class Session {
   late String date;
 
   Session() {
-    this.date = date;
-    this.id = id;
-    this.description = description;
-    this.duration = duration;
+    this.id = 0;
+    this.description = '';
+    this.duration = 0;
+    this.date = '';
   }
 
   Session.fromJson(Map<String, dynamic> session) {
     this.id = session['id'];
-    this.description = session['name'];
-    this.date = date;
-    this.duration = duration;
+    this.description = session['description'];
+    this.date = session['date'];
+    this.duration = session['duration'];
   }
   Map<String, dynamic> toJson() {
     return {
