@@ -11,9 +11,17 @@ class TrainingScreen extends StatefulWidget {
 }
 
 class _TrainingScreenState extends State<TrainingScreen> {
+  List<Session> sessions = [];
   final description = TextEditingController();
   final duration = TextEditingController();
   SP_helper helper = new SP_helper();
+
+  @override
+  void initState() {
+    helper.init().then((value) => updateScreen());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +29,8 @@ class _TrainingScreenState extends State<TrainingScreen> {
         title: Text("Your Training Sessions"),
       ),
       bottomNavigationBar: BottomNavigation(),
-      body: Center(
-        child: FlutterLogo(),
+      body: ListView(
+        children: getContent(),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -31,6 +39,21 @@ class _TrainingScreenState extends State<TrainingScreen> {
         },
       ),
     );
+  }
+
+  List<Widget> getContent() {
+    List<Widget> tiles = [];
+    sessions.forEach((session) {
+      tiles.add(ListTile(
+        title: Text(session.description),
+        subtitle: Text('${session.date}- duration:${session.duration} min'),
+      ));
+    });
+    return tiles;
+  }
+
+  void updateScreen() {
+    sessions = helper.getSessions();
   }
 
   Future showSessionDialog(BuildContext context) async {
@@ -77,5 +100,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
     session.description = description.text;
     session.duration = int.parse(duration.text);
     helper.writeSession(session);
+    description.text = '';
+    duration.text = '';
   }
 }
