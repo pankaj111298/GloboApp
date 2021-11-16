@@ -35,4 +35,8 @@ class SP_helper {
   int getCounter() {
     return preferences.getInt('counter') ?? 0;
   }
+
+  Future deleteSession(int id) async {
+    preferences.remove(id.toString());
+  }
 }
