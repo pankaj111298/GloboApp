@@ -97,11 +97,14 @@ class _TrainingScreenState extends State<TrainingScreen> {
     DateTime now = DateTime.now();
     String today = '${now.year}-${now.month}-${now.day}';
     Session session = new Session();
-    session.id = 1;
+    session.id = helper.getCounter() + 1;
     session.date = today;
     session.description = description.text;
     session.duration = int.parse(duration.text);
-    helper.writeSession(session);
+    helper.writeSession(session).then((_) {
+      updateScreen();
+      helper.setCounter();
+    });
     description.text = '';
     duration.text = '';
     Navigator.pop(context);

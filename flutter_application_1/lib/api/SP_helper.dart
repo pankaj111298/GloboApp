@@ -17,10 +17,22 @@ class SP_helper {
     List<Session> sessions = [];
     Set<String> keys = preferences.getKeys();
     keys.forEach((String key) {
-      Session session =
-          Session.fromJson(json.decode(preferences.getString(key) ?? ''));
-      sessions.add(session);
+      if (key != 'counter') {
+        Session session =
+            Session.fromJson(json.decode(preferences.getString(key) ?? ''));
+        sessions.add(session);
+      }
     });
     return sessions;
+  }
+
+  Future setCounter() async {
+    int counter = preferences.getInt('counter') ?? 0;
+    counter++;
+    await preferences.setInt('counter', counter);
+  }
+
+  int getCounter() {
+    return preferences.getInt('counter') ?? 0;
   }
 }
